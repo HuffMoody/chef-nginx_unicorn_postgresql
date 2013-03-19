@@ -28,9 +28,6 @@
 [submodule "cookbooks/postgresql"]
 	path = cookbooks/postgresql
 	url = git://github.com/opscode-cookbooks/postgresql.git
-[submodule "cookbooks/rbenv"]
-	path = cookbooks/rbenv
-	url = git://github.com/RiotGames/rbenv-cookbook.git
 [submodule "cookbooks/sudo"]
 	path = cookbooks/sudo
 	url = git://github.com/opscode-cookbooks/sudo.git

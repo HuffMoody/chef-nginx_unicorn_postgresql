@@ -42,8 +42,6 @@ end
 
 # Include recipes
 %w(
-   rbenv
-   rbenv::ruby_build
    nginx::source
    postgresql::server
    postgresql::client
