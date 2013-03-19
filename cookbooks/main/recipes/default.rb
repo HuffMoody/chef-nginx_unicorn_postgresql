@@ -45,7 +45,6 @@ end
    rbenv
    rbenv::ruby_build
    nginx::source
-   nginx::rails_unicorn
    postgresql::server
    postgresql::client
    nodejs::install_from_source
