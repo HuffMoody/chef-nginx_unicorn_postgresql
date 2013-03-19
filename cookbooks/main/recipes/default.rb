@@ -47,7 +47,7 @@ end
    nginx::source
    postgresql::server
    postgresql::client
-   nodejs::install_from_source
+   nodejs
    logrotate
    sudo
    memcached
