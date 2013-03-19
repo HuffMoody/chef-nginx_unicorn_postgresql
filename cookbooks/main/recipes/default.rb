@@ -42,7 +42,6 @@ end
 
 # Include recipes
 %w(
-   ruby-shadow
    ruby_build
    rbenv::system
    nginx::source
