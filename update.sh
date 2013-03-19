@@ -1,1 +1,1 @@
-ssh root@`cat ip_config` "chef-solo -c /var/chef/solo.rb"
+ssh root@`cat ip` "chef-solo -c /var/chef/solo.rb"

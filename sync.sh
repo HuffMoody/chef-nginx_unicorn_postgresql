@@ -1,1 +1,1 @@
-rsync -r . root@`cat ip_config`:/var/chef
+rsync -r . root@`cat ip`:/var/chef

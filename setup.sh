@@ -1,1 +1,1 @@
-ssh root@`cat ip_config` 'bash -s' < bootstrap.sh
+ssh root@`cat ip` 'bash -s' < bootstrap.sh
