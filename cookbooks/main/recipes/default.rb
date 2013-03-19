@@ -42,8 +42,8 @@ end
 
 # Include recipes
 %w(
-   ruby_build
-   rbenv::system
+   rbenv
+   rbenv::ruby_build
    nginx::source
    nginx::rails_unicorn
    postgresql::server
