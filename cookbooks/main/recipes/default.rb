@@ -13,6 +13,7 @@ end
 # Setup user directories
 node[:users].each_with_index do |user, i|
 
+  # Create user
   user user[:id] do
     gid 4000
     uid "4#{i.to_s.rjust(3, '0')}"
@@ -22,25 +23,8 @@ node[:users].each_with_index do |user, i|
     supports manage_home: true
   end
 
-  directories = %w[.ssh git tmp private xfer backup]
-
-  # setup web directory
-  if FileTest.exists?('/data')
-    directory "/data/#{user[:id]}/web" do
-      recursive true
-      owner user[:id]
-    end
-    execute "symlink web directory" do
-      command "ln -s /data/#{user[:id]}/web /home/#{user[:id]}/web"
-      creates "/home/#{user[:id]}/web"
-      action :run
-    end
-  else
-    directories += %w[web]
-  end
-
-  # Setup other directories
-  directories.each do |dir|
+  # Setup directories
+  %w[.ssh git tmp private xfer backup web].each do |dir|
     directory "/home/#{user[:id]}/#{dir}" do
       owner user[:id]
     end
