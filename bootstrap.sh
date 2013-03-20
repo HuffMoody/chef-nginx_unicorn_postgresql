@@ -9,6 +9,7 @@ cd ruby-1.9.3-p125/
 ./configure --prefix=/usr/local
 make
 make install
-gem install chef ruby-shadow --no-ri --no-rdoc
+gem install chef -v 10.24.0 --no-ri --no-rdoc
+gem install ruby-shadow --no-ri --no-rdoc
 mkdir /var/chef
 reboot
