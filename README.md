@@ -1,12 +1,11 @@
 **Stack**
 
-Chef solo recipes for `Ubuntu 12.04 LTS 32 bit` that sets up
+Chef solo recipes for that sets up:
 
 - Nginx
 - Unicorn
 - Postgres
 - rbenv to manage rubies
-- Foreman for process management via Upstart
 
 **Usage**
 
@@ -16,3 +15,7 @@ Chef solo recipes for `Ubuntu 12.04 LTS 32 bit` that sets up
 3. Initialize git submodules
 4. `./sync.sh` syncs the chef recipes to the server.
 5. `./update.sh` installs packages via chef.
+
+** Tested on
+
+- Ubuntu 12.04 x64
