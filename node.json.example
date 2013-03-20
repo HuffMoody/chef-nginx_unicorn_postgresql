@@ -1,0 +1,43 @@
+{ 
+  "users": [{
+    "id": "deploy",
+    "password": "password",
+    "ssh_key": ""
+  }],
+
+  "authorization": {
+    "sudo": {
+      "users": ["deploy"],
+      "passwordless": true
+    }
+  },
+  
+  "postgresql": {
+    "password": {
+      "postgres": "password"
+    },
+    "users": [
+      {
+        "username": "deploy",
+        "databases": [
+          "application_production"
+        ]
+      }
+    ]
+  },
+
+  "rails_applications": [
+    {
+      "deploy_user":  "deploy",
+      "deploy_group": "deploy",
+      "sitename":    "application",
+      "domains":    ["www.application.com", "application.com"]
+    }
+  ],
+
+  "rbenv": {
+    "ruby": "1.9.3-p392"
+  },
+
+  "run_list": ["recipe[ohai]", "recipe[main]"]
+}
