@@ -27,12 +27,14 @@ node[:users].each_with_index do |user, i|
   %w[.ssh git tmp private xfer backup web].each do |dir|
     directory "/home/#{user[:id]}/#{dir}" do
       owner user[:id]
+      group "deploy"
     end
   end
 
   # Add SSH key
   file "/home/#{user[:id]}/.ssh/authorized_keys" do
     owner user[:id]
+    group "deploy"
     content user[:ssh_key]
   end
   
@@ -44,24 +46,34 @@ end
    postgresql::server
    postgresql::client
    postgresql::ruby
-   nodejs
+   nodejs::install_from_package
    logrotate
    sudo
    memcached
+   rbenv::default
+   rbenv::ruby_build
    ).each {|recipe| include_recipe recipe }
+
+# Setup rbenv
+rbenv_ruby node[:rbenv][:ruby] do
+  global true
+end
+rbenv_gem "bundler" do
+  ruby_version node[:rbenv][:ruby]
+end
 
 # Setup databases
 node[:postgresql][:users].each do |user|
   bash "create postgresl user #{user[:username]}" do
     user "postgres"
-    command "createuser -d -a #{user[:username]}"
-    not_if "psql -c '\\du' | grep #{user[:username]}"
+    code "createuser -d -a #{user[:username]}"
+    not_if "psql -c '\\du' | grep #{user[:username]}", user: 'postgres'
   end
   user[:databases].each do |db|
     bash "create database #{db} for user #{user[:username]}" do
       user user[:username]
-      command "createdb #{db}"
-      not_if "psql -c '\\l' | grep #{db}"
+      code "createdb #{db}"
+      not_if "psql -c '\\list' | grep #{db}", user: 'postgres'
     end
   end
 end

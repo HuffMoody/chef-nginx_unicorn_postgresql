@@ -31,3 +31,12 @@
 [submodule "cookbooks/sudo"]
 	path = cookbooks/sudo
 	url = git://github.com/opscode-cookbooks/sudo.git
+[submodule "cookbooks/rvm"]
+	path = cookbooks/rvm
+	url = git://github.com/fnichol/chef-rvm.git
+[submodule "cookbooks/git"]
+	path = cookbooks/git
+	url = git://github.com/opscode-cookbooks/git.git
+[submodule "cookbooks/rbenv"]
+	path = cookbooks/rbenv
+	url = git://github.com/RiotGames/rbenv-cookbook.git
