@@ -83,7 +83,9 @@ node[:postgresql][:users].each do |user|
 end
 
 # Setup nginx config for rails applications
-node[:rails_applications][:sites].each do |site|
+node[:rails_applications].each do |site|
+
+  # Setup git
   git_dir = "/home/#{site[:deploy_user]}/git/#{site[:sitename]}.git"
   bash "Create git repo #{git_dir}" do
     user site[:deploy_user]
@@ -94,4 +96,23 @@ node[:rails_applications][:sites].each do |site|
     EOH
     not_if "test -d #{git_dir}"
   end
+
+  # Setup deploy directory
+  deploy_path = "/home/#{site[:deploy_user]}/web/#{site[:sitename]}"
+  directory deploy_path do
+    owner site[:deploy_user]
+  end
+
+  # Site template
+  template "/etc/nginx/sites-available/#{site[:sitename]}" do
+    source "nginx_unicorn.erb"
+    mode 0644
+    variables(
+      :sitename    => site[:sitename],
+      :deploy_path => deploy_path,
+      :domains     => site[:domains]
+    )
+  end
+  nginx_site site[:sitename]
+
 end
