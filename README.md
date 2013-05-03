@@ -9,7 +9,7 @@ Chef solo recipes for that sets up:
 
 **Usage**
 
-0. Copy `ip.example` to `ip` and paste in browser ip address
+0. Copy `ip.example` to `ip` and replace contents with server IP address
 1. `./setup.sh` installs base ruby, build dependencies and Chef.
 2. Copy `node.json.example` to `node.json` and customize it to your needs
 3. Initialize git submodules
